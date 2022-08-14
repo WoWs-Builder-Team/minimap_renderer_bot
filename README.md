@@ -2,7 +2,7 @@
 
   
 
-A Simple Discord bot wrapper for Minimap Renderer
+A Simple Discord bot wrapper for Minimap Renderer.
 
 ![enter image description here](https://github.com/WoWs-Builder-Team/minimap_renderer/blob/master/docs/minimap.gif?raw=true)
 
