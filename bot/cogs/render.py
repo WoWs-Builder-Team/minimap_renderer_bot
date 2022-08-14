@@ -89,6 +89,9 @@ class EmbedProducer:
         if description := kwargs.get("description"):
             embed.description = description
 
+        if error := kwargs.get("error"):
+            embed.add_field(name="Error", value=error)
+
         if status := kwargs.get("status"):
             embed.add_field(name="Status", value=status)
 
@@ -169,20 +172,33 @@ class CogRender(commands.Cog):
                                 file = File(video_data, "minimap.mp4")
                                 await msg.edit(embed=embed)
                                 await ia.send(file=file)
+                        except nextcord.HTTPException:
+                            embed = ep.get_embed(
+                                RED,
+                                error="Rendered file is too large (>8MB). "
+                                "Consider reducing the render quality",
+                            )
                         except Exception as e:
-                            await msg.edit(f"Error: {e}")
+                            embed = ep.get_embed(RED, error="Unknown error.")
                     elif isinstance(job.result, ReplayParsingError):
-                        await msg.edit("Replay parsing error.")
+                        embed = ep.get_embed(
+                            RED, error="Replay parsing error."
+                        )
                     elif isinstance(job.result, ReplayRenderingError):
-                        await msg.edit("Replay rendering error.")
+                        embed = ep.get_embed(
+                            RED, error="Replay rendering error."
+                        )
                     else:
-                        await msg.edit("Error.")
+                        embed = ep.get_embed(RED, error="Unknown error.")
+                    await msg.edit(embed=embed)
                     break
                 case "failed":
-                    await msg.edit("Failed.")
+                    embed = ep.get_embed(RED, error="Unknown error.")
+                    await msg.edit(embed=embed)
                     break
                 case _:
-                    await msg.edit("Expired.")
+                    embed = ep.get_embed(RED, error="Render task expired.")
+                    await msg.edit(embed=embed)
             await asyncio.sleep(1)
 
     @nextcord.slash_command(description="Renders your replay file.")
