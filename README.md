@@ -23,9 +23,7 @@ A virtual environment can be created with `python3.10 -m venv venv`.
   
 
 ```
-
 git clone https://github.com/WoWs-Builder-Team/minimap_renderer_bot.git
-
 ```
 
   
@@ -35,12 +33,9 @@ git clone https://github.com/WoWs-Builder-Team/minimap_renderer_bot.git
   
 
 ```
-
 cd minimap_renderer_bot
-
-pip install -U -r requirements.txt
 pip install git+https://github.com/WoWs-Builder-Team/minimap_renderer.git@develop
-
+pip install -U -r requirements.txt
 ```
 
   
@@ -48,14 +43,11 @@ pip install git+https://github.com/WoWs-Builder-Team/minimap_renderer.git@develo
 4. Create a `.env` file. **(Important)**
 
 ```
-
 DISCORD_TOKEN=YOUR_DISCORD_BOT_TOKEN
 REDIS_HOST=YOUR_REDIS_HOST
 REDIS_PORT=YOUR_REDIS_PORT
 REDIS_USERNAME=YOUR_REDIS_USERNAME
 REDIS_PASSWORD=YOUR_REDIS_PASSWORD
-
-
 ```
 
   
@@ -65,17 +57,15 @@ REDIS_PASSWORD=YOUR_REDIS_PASSWORD
   
 
 To start the bot
-```
 
+```
 main.py -r bot
-
 ```
+
 To start the renderer worker
 
 ```
-
 main.py -r worker
-
 ```
 
 ### License
