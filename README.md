@@ -36,7 +36,7 @@ git clone https://github.com/WoWs-Builder-Team/minimap_renderer_bot.git
 
 ```
 
-cd minimap_renderer
+cd minimap_renderer_bot
 
 pip install -U -r requirements.txt
 pip install git+https://github.com/WoWs-Builder-Team/minimap_renderer.git@develop
