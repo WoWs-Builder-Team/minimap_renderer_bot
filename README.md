@@ -50,7 +50,11 @@ pip install git+https://github.com/WoWs-Builder-Team/minimap_renderer.git@develo
 ```
 
 DISCORD_TOKEN=YOUR_DISCORD_BOT_TOKEN
-REDIS_URL=redis://:@localhost:6379/`
+REDIS_HOST=YOUR_REDIS_HOST
+REDIS_PORT=YOUR_REDIS_PORT
+REDIS_USERNAME=YOUR_REDIS_USERNAME
+REDIS_PASSWORD=YOUR_REDIS_PASSWORD
+
 
 ```
 
