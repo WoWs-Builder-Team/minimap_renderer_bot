@@ -1,3 +1,4 @@
+import imp
 import nextcord
 import asyncio
 
@@ -16,6 +17,7 @@ from nextcord import (
     File,
     Embed,
 )
+from utils.logging import LOGGER_BOT
 
 QUEUE = Queue(name="single", connection=REDIS)
 
@@ -195,6 +197,9 @@ class CogRender(commands.Cog):
                                 "Consider reducing the render quality",
                             )
                         except Exception as e:
+                            LOGGER_BOT.exception(
+                                f"Error occurred after render complete. {e}"
+                            )
                             embed = ep.get_embed(RED, error="Unknown error.")
                     elif isinstance(job.result, ReplayParsingError):
                         embed = ep.get_embed(
@@ -205,6 +210,7 @@ class CogRender(commands.Cog):
                             RED, error="Replay rendering error."
                         )
                     else:
+                        LOGGER_BOT.exception("Unknown error at finish")
                         embed = ep.get_embed(RED, error="Unknown error.")
                     await msg.edit(embed=embed)
                     break
