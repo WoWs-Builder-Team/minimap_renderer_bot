@@ -49,7 +49,6 @@ def render_single(
             except Exception as e:
                 raise ReplayRenderingError from e
     except Exception as e:
-        LOGGER.error(e)
-        raise e
+        return e
     finally:
         REDIS.set(f"cooldown_{user_id}", "", ex=60)
