@@ -7,6 +7,7 @@ from renderer.render import Renderer
 from tempfile import NamedTemporaryFile
 from utils.exceptions import ReplayParsingError, ReplayRenderingError
 from utils.connection import REDIS
+from utils.logging import LOGGER
 
 
 def render_single(
@@ -48,6 +49,7 @@ def render_single(
             except Exception as e:
                 raise ReplayRenderingError from e
     except Exception as e:
-        return e
+        LOGGER.error(e)
+        raise e
     finally:
         REDIS.set(f"cooldown_{user_id}", "", ex=60)
