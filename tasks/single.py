@@ -44,7 +44,7 @@ def render_single(
                         tmp.name, fps, quality, progress_cb=progress_cb
                     )
                     tmp.seek(0)
-                    return tmp.read()
+                    return tmp.read(), renderer.get_player_build()
             except Exception as e:
                 raise ReplayRenderingError from e
     except Exception as e:

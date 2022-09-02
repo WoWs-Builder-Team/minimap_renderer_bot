@@ -101,6 +101,11 @@ class EmbedProducer:
                 name="Progress",
                 value=f"{'▮' * progress}{'▯' * (10 - progress)}",
             )
+        if build := kwargs.get("build"):
+            embed.add_field(
+                name="WoWs ShipBuilder",
+                value=f"[Player Build]({build['build_url']})",
+            )
 
         return embed
 
@@ -165,10 +170,21 @@ class CogRender(commands.Cog):
                         embed = ep.get_embed(YELLOW, status="Started")
                     await msg.edit(embed=embed)
                 case "finished":
-                    if isinstance(job.result, bytes):
+                    if isinstance(job.result, tuple):
                         try:
-                            embed = ep.get_embed(GREEN, status="Completed")
-                            with BytesIO(job.result) as video_data:
+                            video, builds = job.result
+
+                            try:
+                                build = [
+                                    b for b in builds if b["relation"] == -1
+                                ].pop()
+                            except Exception:
+                                build = {}
+
+                            embed = ep.get_embed(
+                                GREEN, status="Completed", build=build
+                            )
+                            with BytesIO(video) as video_data:
                                 file = File(video_data, "minimap.mp4")
                                 await msg.edit(embed=embed)
                                 await ia.send(file=file)
