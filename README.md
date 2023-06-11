@@ -10,7 +10,7 @@ A Simple Discord bot wrapper for Minimap Renderer.
 
   
 
-1. Get Python 3.10 or higher 
+1. Get Python 3.10 or higher
 
   
 
