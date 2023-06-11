@@ -29,7 +29,8 @@ git clone https://github.com/WoWs-Builder-Team/minimap_renderer_bot.git
   
 
 3. Install dependencies
-Depending on preferences, once you've entereted the minimap_renderer_bot directory you would [activate the virtual environment.](https://docs.python.org/3/library/venv.html) 
+
+Depending on preferences, once you've entereted the `minimap_renderer_bot` directory you would create (as explained above) and then [activate the virtual environment.](https://docs.python.org/3/library/venv.html) 
 
 
 ```
@@ -58,7 +59,7 @@ and a list of users you would like to be exempt from the cooldown altogether, us
  
 ### Usage
 
-  
+Ensure that if you created a virtual environment that you have it activated.
 
 To start the bot
 
