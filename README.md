@@ -29,8 +29,8 @@ git clone https://github.com/WoWs-Builder-Team/minimap_renderer_bot.git
   
 
 3. Install dependencies
+Depending on preferences, once you've entereted the minimap_renderer_bot directory you would [activate the virtual environment.](https://docs.python.org/3/library/venv.html) 
 
-  
 
 ```
 cd minimap_renderer_bot
@@ -38,7 +38,7 @@ pip install git+https://github.com/WoWs-Builder-Team/minimap_renderer.git@develo
 pip install -U -r requirements.txt
 ```
 
-  
+
 
 4. Create a `.env` file. **(Important)**
 
@@ -48,8 +48,12 @@ REDIS_HOST=YOUR_REDIS_HOST
 REDIS_PORT=YOUR_REDIS_PORT
 REDIS_USERNAME=YOUR_REDIS_USERNAME
 REDIS_PASSWORD=YOUR_REDIS_PASSWORD
+COOLDOWN_TIMER=60
+CD_EXEMPT_USERS='[""]'
 ```
 
+The final two are related to the cooldown each user gets between /render commmands, 
+and a list of users you would like to be exempt from the cooldown altogether, using their Discord User IDs.
   
  
 ### Usage
