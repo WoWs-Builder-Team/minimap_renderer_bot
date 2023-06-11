@@ -8,7 +8,7 @@ from tempfile import NamedTemporaryFile
 from utils.exceptions import ReplayParsingError, ReplayRenderingError
 from utils.connection import REDIS
 from utils.logging import LOGGER
-
+from os import environ
 
 def render_single(
     user_id: int,
@@ -51,4 +51,8 @@ def render_single(
     except Exception as e:
         return e
     finally:
-        REDIS.set(f"cooldown_{user_id}", "", ex=60)
+        CDE = environ.get("CD_EXEMPT_USERS")
+        CDT = int(environ.get("COOLDOWN_TIMER",60))
+        if str(user_id) not in CDE:
+            REDIS.set(f"cooldown_{user_id}", "", ex=CDT)
+
