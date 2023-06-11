@@ -51,7 +51,7 @@ def render_single(
     except Exception as e:
         return e
     finally:
-        CDE = environ.get("CD_EXEMPT_USERS")
+        CDE = environ.get("CD_EXEMPT_USERS",["1234567890"])
         CDT = int(environ.get("COOLDOWN_TIMER",60))
         if str(user_id) not in CDE:
             REDIS.set(f"cooldown_{user_id}", "", ex=CDT)
